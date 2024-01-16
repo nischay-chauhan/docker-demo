@@ -1,0 +1,17 @@
+In Docker, when you use the -v option (like in docker run -v), it's like connecting a shared folder between your computer and the Docker container. This lets you easily move files and data back and forth.
+
+-v "your project folder path" : /app 
+
+-v: This option is used to specify a volume.
+
+"your project folder path": Replace this with the full path to the folder on your host machine that you want to share with the container. For example, if your project is in /path/to/your/project, you would replace this part with /path/to/your/project.
+
+:/app: This part specifies the path inside the container where the shared data will be available. In this case, it's mounted at /app inside the container.
+
+
+
+docker run -v "$(pwd)":/app:ro -v /app/node_modules
+  -p 3000:3000 -d --name node-app node-app-image
+
+":ro": This part sets the mount as read-only (ro stands for "read-only"), meaning that the files and directories in /app inside the container can be read but not modified. It adds a layer of protection to ensure that the container doesn't accidentally modify the files in your project directory on the host machine.
+

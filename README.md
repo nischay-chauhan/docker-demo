@@ -18,3 +18,10 @@ node-app-image
 ```
 docker rm node-app -f 
 ```
+
+- for "read-only" mount so that files inside "/app" can be read and not modifies
+
+```
+docker run -v "$(pwd)":/app:ro -p 3000:3000 -d --name node-app <image_name>
+
+```
